@@ -1,0 +1,56 @@
+#include <stdio.h>
+
+
+int buscaBinaria(int arr[], int tamanho, int valor) {
+    int inicio = 0;
+    int fim = tamanho - 1;
+    
+    while (inicio <= fim) {
+        int meio = inicio + (fim - inicio) / 2;
+        
+       
+        if (arr[meio] == valor)
+            return meio;
+        
+       
+        if (arr[meio] < valor)
+            inicio = meio + 1;
+        
+        else
+            fim = meio - 1;
+    }
+    
+    
+    return -1;
+}
+
+int main() {
+    int n, i, valor, resultado;
+    
+    
+    printf("Quantos números você quer inserir? ");
+    scanf("%d", &n);
+    
+    int arr[n];
+    
+    
+    printf("Digite %d números inteiros:\n", n);
+    for (i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+    
+    
+    printf("Digite o valor que você quer pesquisar: ");
+    scanf("%d", &valor);
+    
+    
+    resultado = buscaBinaria(arr, n, valor);
+    
+    
+    if (resultado != -1)
+        printf("Valor encontrado na posição %d\n", resultado);
+    else
+        printf("Valor não encontrado\n");
+    
+    return 0;
+}
