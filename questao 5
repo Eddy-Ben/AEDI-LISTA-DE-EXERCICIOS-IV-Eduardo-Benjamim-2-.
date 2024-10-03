@@ -1,51 +1,48 @@
 #include <stdio.h>
+#include <stdlib.h>
 
+int compara(const void *a, const void *b) {
+    return (*(int*)a - *(int*)b);
+}
 
 int buscaBinaria(int arr[], int tamanho, int valor) {
     int inicio = 0;
     int fim = tamanho - 1;
     
     while (inicio <= fim) {
-        int meio = inicio + (fim - inicio) / 2;
+        int meio = (inicio + fim) / 2; 
         
-       
-        if (arr[meio] == valor)
+        if (arr[meio] == valor) 
             return meio;
         
-       
-        if (arr[meio] < valor)
+        if (arr[meio] < valor) 
             inicio = meio + 1;
-        
-        else
+        else 
             fim = meio - 1;
     }
     
-    
-    return -1;
+    return -1; 
 }
 
 int main() {
-    int n, i, valor, resultado;
-    
+    int n, valor, resultado;
     
     printf("Quantos números você quer inserir? ");
     scanf("%d", &n);
     
     int arr[n];
     
-    
     printf("Digite %d números inteiros:\n", n);
-    for (i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++) {
         scanf("%d", &arr[i]);
     }
     
+    qsort(arr, n, sizeof(int), compara);
     
     printf("Digite o valor que você quer pesquisar: ");
     scanf("%d", &valor);
     
-    
     resultado = buscaBinaria(arr, n, valor);
-    
     
     if (resultado != -1)
         printf("Valor encontrado na posição %d\n", resultado);
@@ -54,3 +51,4 @@ int main() {
     
     return 0;
 }
+
